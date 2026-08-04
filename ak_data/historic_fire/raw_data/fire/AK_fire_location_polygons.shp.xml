@@ -1,0 +1,437 @@
+<metadata xml:lang="en">
+	<Esri>
+		<DataProperties>
+			<itemProps>
+				<itemName Sync="TRUE">AK_fire_location_polygons</itemName>
+				<nativeExtBox>
+					<westBL Sync="TRUE">-1692148.309009</westBL>
+					<eastBL Sync="TRUE">1321778.753780</eastBL>
+					<southBL Sync="TRUE">490809.916852</southBL>
+					<northBL Sync="TRUE">2245650.005253</northBL>
+					<exTypeCode Sync="TRUE">1</exTypeCode>
+				</nativeExtBox>
+				<itemLocation>
+					<linkage Sync="TRUE">file://\\WINDOWS-451VCL3\C\Users\lora\Documents\Winslow\permafrost\iLand landscapes\landscape building\data_sets\fire\AK_fire_location_polygons.shp</linkage>
+					<protocol Sync="TRUE">Local Area Network</protocol>
+				</itemLocation>
+				<imsContentType>002</imsContentType>
+				<itemSize Sync="TRUE">0.000</itemSize></itemProps>
+			<coordRef>
+				<type Sync="TRUE">Projected</type>
+				<geogcsn Sync="TRUE">GCS_North_American_1983</geogcsn>
+				<csUnits Sync="TRUE">Linear Unit: Meter (1.000000)</csUnits>
+				<peXml Sync="TRUE">&lt;ProjectedCoordinateSystem xsi:type='typens:ProjectedCoordinateSystem' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:typens='http://www.esri.com/schemas/ArcGIS/10.1'&gt;&lt;WKT&gt;PROJCS[&amp;quot;NAD_1983_Alaska_Albers&amp;quot;,GEOGCS[&amp;quot;GCS_North_American_1983&amp;quot;,DATUM[&amp;quot;D_North_American_1983&amp;quot;,SPHEROID[&amp;quot;GRS_1980&amp;quot;,6378137.0,298.257222101]],PRIMEM[&amp;quot;Greenwich&amp;quot;,0.0],UNIT[&amp;quot;Degree&amp;quot;,0.0174532925199433]],PROJECTION[&amp;quot;Albers&amp;quot;],PARAMETER[&amp;quot;False_Easting&amp;quot;,0.0],PARAMETER[&amp;quot;False_Northing&amp;quot;,0.0],PARAMETER[&amp;quot;Central_Meridian&amp;quot;,-154.0],PARAMETER[&amp;quot;Standard_Parallel_1&amp;quot;,55.0],PARAMETER[&amp;quot;Standard_Parallel_2&amp;quot;,65.0],PARAMETER[&amp;quot;Latitude_Of_Origin&amp;quot;,50.0],UNIT[&amp;quot;Meter&amp;quot;,1.0],AUTHORITY[&amp;quot;EPSG&amp;quot;,3338]]&lt;/WKT&gt;&lt;XOrigin&gt;-13752200&lt;/XOrigin&gt;&lt;YOrigin&gt;-8948200&lt;/YOrigin&gt;&lt;XYScale&gt;327482121.21482342&lt;/XYScale&gt;&lt;ZOrigin&gt;-100000&lt;/ZOrigin&gt;&lt;ZScale&gt;10000&lt;/ZScale&gt;&lt;MOrigin&gt;-100000&lt;/MOrigin&gt;&lt;MScale&gt;10000&lt;/MScale&gt;&lt;XYTolerance&gt;0.001&lt;/XYTolerance&gt;&lt;ZTolerance&gt;0.001&lt;/ZTolerance&gt;&lt;MTolerance&gt;0.001&lt;/MTolerance&gt;&lt;HighPrecision&gt;true&lt;/HighPrecision&gt;&lt;WKID&gt;102006&lt;/WKID&gt;&lt;LatestWKID&gt;3338&lt;/LatestWKID&gt;&lt;/ProjectedCoordinateSystem&gt;</peXml>
+				<projcsn Sync="TRUE">NAD_1983_Alaska_Albers</projcsn>
+			</coordRef>
+			<lineage>
+				<Process Name="Truncate Table" ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\TruncateTable" Date="20210105" Time="142728">TruncateTable \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AlaskaFireHistory_Polygons.gdb\AK_fire_location_polygons</Process>
+				<Process Name="Append" ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\Append" Date="20210105" Time="142733">Append \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AlaskaFireHistory_Polygons.gdb\AK_fire_location_polygons "Use the Field Map to reconcile schema differences" "NAME "NAME" true true false 128 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,NAME,0,128;RECORDNUMBER "RECORDNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,RECORDNUMBER,0,8;ACRES "ACRES" true true false 8 Double 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ACRES,-1,-1;AFSNUMBER "AFSNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,AFSNUMBER,0,8;DOFNUMBER "DOFNUMBER" true true false 16 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,DOFNUMBER,0,16;USFSNUMBER "USFSNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,USFSNUMBER,0,8;ADDNUMBER "ADDNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ADDNUMBER,0,8;PERIMETERDATE "PERIMETERDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,PERIMETERDATE,-1,-1;LATESTPERIMETER "LATESTPERIMETER" true true false 4 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,LATESTPERIMETER,0,4;SOURCE "SOURCE" true true false 30 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCE,0,30;SOURCEMETHOD "SOURCEMETHOD" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCEMETHOD,0,32;SOURCECLASS "SOURCECLASS" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCECLASS,0,32;AGENCYACRES "AGENCYACRES" true true false 8 Double 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,AGENCYACRES,-1,-1;ACREAGEMETHOD "ACREAGEMETHOD" true true false 50 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ACREAGEMETHOD,0,50;COMMENTS "COMMENTS" true true false 512 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,COMMENTS,0,512;FIREID "FIREID" true true false 4 Long 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIREID,-1,-1;FIREYEAR "FIREYEAR" true true false 5 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIREYEAR,0,5;UPDATETIME "UPDATETIME" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,UPDATETIME,-1,-1;UPDATEUSER "UPDATEUSER" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,UPDATEUSER,0,32;USEDONFINALREPORT "USEDONFINALREPORT" true true false 3 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,USEDONFINALREPORT,0,3;FPOUTDATE "FPOUTDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FPOUTDATE,-1,-1;FPMERGEDDATE "FPMERGEDDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FPMERGEDDATE,-1,-1;IRWINID "IRWINID" true true false 128 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,IRWINID,0,128;PRESCRIBED "PRESCRIBED" true true false 1 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,PRESCRIBED,0,1;FIRESEASONS "FIRESEASONS" true true false 20 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIRESEASONS,0,20" # #</Process>
+				<Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\CalculateGeometryAttributes" Date="20210105" Time="143528">CalculateGeometryAttributes "Updated fire location polygons" "ACRES AREA" # Acres PROJCS['NAD_1983_Alaska_Albers',GEOGCS['GCS_North_American_1983',DATUM['D_North_American_1983',SPHEROID['GRS_1980',6378137.0,298.257222101]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Albers'],PARAMETER['False_Easting',0.0],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',-154.0],PARAMETER['Standard_Parallel_1',55.0],PARAMETER['Standard_Parallel_2',65.0],PARAMETER['Latitude_Of_Origin',50.0],UNIT['Meter',1.0]] "Same as input"</Process>
+				<Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\CalculateField" Date="20210105" Time="145030">CalculateField "Updated fire location polygons" ACRES round(!ACRES!, 2) "Python 3" # Text</Process>
+				<Process Name="Truncate Table" ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\TruncateTable" Date="20210105" Time="150138">TruncateTable \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AlaskaFireHistory_Polygons.gdb\AK_fire_location_polygons</Process>
+				<Process Name="Append" ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\Append" Date="20210105" Time="150140">Append \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AlaskaFireHistory_Polygons.gdb\AK_fire_location_polygons "Use the Field Map to reconcile schema differences" "NAME "NAME" true true false 128 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,NAME,0,128;RECORDNUMBER "RECORDNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,RECORDNUMBER,0,8;ACRES "ACRES" true true false 8 Double 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ACRES,-1,-1;AFSNUMBER "AFSNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,AFSNUMBER,0,8;DOFNUMBER "DOFNUMBER" true true false 16 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,DOFNUMBER,0,16;USFSNUMBER "USFSNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,USFSNUMBER,0,8;ADDNUMBER "ADDNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ADDNUMBER,0,8;PERIMETERDATE "PERIMETERDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,PERIMETERDATE,-1,-1;LATESTPERIMETER "LATESTPERIMETER" true true false 4 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,LATESTPERIMETER,0,4;SOURCE "SOURCE" true true false 30 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCE,0,30;SOURCEMETHOD "SOURCEMETHOD" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCEMETHOD,0,32;SOURCECLASS "SOURCECLASS" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCECLASS,0,32;AGENCYACRES "AGENCYACRES" true true false 8 Double 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,AGENCYACRES,-1,-1;ACREAGEMETHOD "ACREAGEMETHOD" true true false 50 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ACREAGEMETHOD,0,50;COMMENTS "COMMENTS" true true false 512 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,COMMENTS,0,512;FIREID "FIREID" true true false 4 Long 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIREID,-1,-1;FIREYEAR "FIREYEAR" true true false 5 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIREYEAR,0,5;UPDATETIME "UPDATETIME" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,UPDATETIME,-1,-1;UPDATEUSER "UPDATEUSER" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,UPDATEUSER,0,32;USEDONFINALREPORT "USEDONFINALREPORT" true true false 3 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,USEDONFINALREPORT,0,3;FPOUTDATE "FPOUTDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FPOUTDATE,-1,-1;FPMERGEDDATE "FPMERGEDDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FPMERGEDDATE,-1,-1;IRWINID "IRWINID" true true false 128 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,IRWINID,0,128;PRESCRIBED "PRESCRIBED" true true false 1 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,PRESCRIBED,0,1;FIRESEASONS "FIRESEASONS" true true false 20 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIRESEASONS,0,20" # #</Process>
+				<Process Name="Truncate Table" ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\TruncateTable" Date="20210105" Time="150350">TruncateTable \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AlaskaFireHistory_Polygons.gdb\AK_fire_location_polygons</Process>
+				<Process Name="Append" ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\Append" Date="20210105" Time="150353">Append \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AlaskaFireHistory_Polygons.gdb\AK_fire_location_polygons "Use the Field Map to reconcile schema differences" "NAME "NAME" true true false 128 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,NAME,0,128;RECORDNUMBER "RECORDNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,RECORDNUMBER,0,8;ACRES "ACRES" true true false 8 Double 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ACRES,-1,-1;AFSNUMBER "AFSNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,AFSNUMBER,0,8;DOFNUMBER "DOFNUMBER" true true false 16 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,DOFNUMBER,0,16;USFSNUMBER "USFSNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,USFSNUMBER,0,8;ADDNUMBER "ADDNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ADDNUMBER,0,8;PERIMETERDATE "PERIMETERDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,PERIMETERDATE,-1,-1;LATESTPERIMETER "LATESTPERIMETER" true true false 4 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,LATESTPERIMETER,0,4;SOURCE "SOURCE" true true false 30 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCE,0,30;SOURCEMETHOD "SOURCEMETHOD" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCEMETHOD,0,32;SOURCECLASS "SOURCECLASS" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCECLASS,0,32;AGENCYACRES "AGENCYACRES" true true false 8 Double 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,AGENCYACRES,-1,-1;ACREAGEMETHOD "ACREAGEMETHOD" true true false 50 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ACREAGEMETHOD,0,50;COMMENTS "COMMENTS" true true false 512 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,COMMENTS,0,512;FIREID "FIREID" true true false 4 Long 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIREID,-1,-1;FIREYEAR "FIREYEAR" true true false 5 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIREYEAR,0,5;UPDATETIME "UPDATETIME" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,UPDATETIME,-1,-1;UPDATEUSER "UPDATEUSER" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,UPDATEUSER,0,32;USEDONFINALREPORT "USEDONFINALREPORT" true true false 3 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,USEDONFINALREPORT,0,3;FPOUTDATE "FPOUTDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FPOUTDATE,-1,-1;FPMERGEDDATE "FPMERGEDDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FPMERGEDDATE,-1,-1;IRWINID "IRWINID" true true false 128 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,IRWINID,0,128;PRESCRIBED "PRESCRIBED" true true false 1 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,PRESCRIBED,0,1;FIRESEASONS "FIRESEASONS" true true false 20 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIRESEASONS,0,20" # #</Process>
+				<Process Name="Truncate Table" ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\TruncateTable" Date="20210105" Time="150800">TruncateTable \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AlaskaFireHistory_Polygons.gdb\AK_fire_location_polygons</Process>
+				<Process Name="Append" ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\Append" Date="20210105" Time="150802">Append \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AlaskaFireHistory_Polygons.gdb\AK_fire_location_polygons "Use the Field Map to reconcile schema differences" "NAME "NAME" true true false 128 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,NAME,0,128;RECORDNUMBER "RECORDNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,RECORDNUMBER,0,8;ACRES "ACRES" true true false 8 Double 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ACRES,-1,-1;AFSNUMBER "AFSNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,AFSNUMBER,0,8;DOFNUMBER "DOFNUMBER" true true false 16 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,DOFNUMBER,0,16;USFSNUMBER "USFSNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,USFSNUMBER,0,8;ADDNUMBER "ADDNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ADDNUMBER,0,8;PERIMETERDATE "PERIMETERDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,PERIMETERDATE,-1,-1;LATESTPERIMETER "LATESTPERIMETER" true true false 4 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,LATESTPERIMETER,0,4;SOURCE "SOURCE" true true false 30 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCE,0,30;SOURCEMETHOD "SOURCEMETHOD" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCEMETHOD,0,32;SOURCECLASS "SOURCECLASS" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCECLASS,0,32;AGENCYACRES "AGENCYACRES" true true false 8 Double 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,AGENCYACRES,-1,-1;ACREAGEMETHOD "ACREAGEMETHOD" true true false 50 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ACREAGEMETHOD,0,50;COMMENTS "COMMENTS" true true false 512 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,COMMENTS,0,512;FIREID "FIREID" true true false 4 Long 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIREID,-1,-1;FIREYEAR "FIREYEAR" true true false 5 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIREYEAR,0,5;UPDATETIME "UPDATETIME" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,UPDATETIME,-1,-1;UPDATEUSER "UPDATEUSER" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,UPDATEUSER,0,32;USEDONFINALREPORT "USEDONFINALREPORT" true true false 3 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,USEDONFINALREPORT,0,3;FPOUTDATE "FPOUTDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FPOUTDATE,-1,-1;FPMERGEDDATE "FPMERGEDDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FPMERGEDDATE,-1,-1;IRWINID "IRWINID" true true false 128 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,IRWINID,0,128;PRESCRIBED "PRESCRIBED" true true false 1 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,PRESCRIBED,0,1;FIRESEASONS "FIRESEASONS" true true false 20 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIRESEASONS,0,20" # #</Process>
+				<Process Name="Truncate Table" ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\TruncateTable" Date="20210105" Time="151116">TruncateTable \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AlaskaFireHistory_Polygons.gdb\AK_fire_location_polygons</Process>
+				<Process Name="Append" ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\Append" Date="20210105" Time="151119">Append \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AlaskaFireHistory_Polygons.gdb\AK_fire_location_polygons "Use the Field Map to reconcile schema differences" "NAME "NAME" true true false 128 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,NAME,0,128;RECORDNUMBER "RECORDNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,RECORDNUMBER,0,8;ACRES "ACRES" true true false 8 Double 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ACRES,-1,-1;AFSNUMBER "AFSNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,AFSNUMBER,0,8;DOFNUMBER "DOFNUMBER" true true false 16 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,DOFNUMBER,0,16;USFSNUMBER "USFSNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,USFSNUMBER,0,8;ADDNUMBER "ADDNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ADDNUMBER,0,8;PERIMETERDATE "PERIMETERDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,PERIMETERDATE,-1,-1;LATESTPERIMETER "LATESTPERIMETER" true true false 4 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,LATESTPERIMETER,0,4;SOURCE "SOURCE" true true false 30 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCE,0,30;SOURCEMETHOD "SOURCEMETHOD" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCEMETHOD,0,32;SOURCECLASS "SOURCECLASS" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCECLASS,0,32;AGENCYACRES "AGENCYACRES" true true false 8 Double 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,AGENCYACRES,-1,-1;ACREAGEMETHOD "ACREAGEMETHOD" true true false 50 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ACREAGEMETHOD,0,50;COMMENTS "COMMENTS" true true false 512 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,COMMENTS,0,512;FIREID "FIREID" true true false 4 Long 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIREID,-1,-1;FIREYEAR "FIREYEAR" true true false 5 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIREYEAR,0,5;UPDATETIME "UPDATETIME" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,UPDATETIME,-1,-1;UPDATEUSER "UPDATEUSER" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,UPDATEUSER,0,32;USEDONFINALREPORT "USEDONFINALREPORT" true true false 3 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,USEDONFINALREPORT,0,3;FPOUTDATE "FPOUTDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FPOUTDATE,-1,-1;FPMERGEDDATE "FPMERGEDDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FPMERGEDDATE,-1,-1;IRWINID "IRWINID" true true false 128 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,IRWINID,0,128;PRESCRIBED "PRESCRIBED" true true false 1 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,PRESCRIBED,0,1;FIRESEASONS "FIRESEASONS" true true false 20 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIRESEASONS,0,20" # #</Process>
+				<Process Name="Truncate Table" ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\TruncateTable" Date="20210106" Time="072315">TruncateTable \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AlaskaFireHistory_Polygons.gdb\AK_fire_location_polygons</Process>
+				<Process Name="Append" ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\Append" Date="20210106" Time="072317">Append \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AlaskaFireHistory_Polygons.gdb\AK_fire_location_polygons "Use the Field Map to reconcile schema differences" "NAME "NAME" true true false 128 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,NAME,0,128;RECORDNUMBER "RECORDNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,RECORDNUMBER,0,8;ACRES "ACRES" true true false 8 Double 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ACRES,-1,-1;AFSNUMBER "AFSNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,AFSNUMBER,0,8;DOFNUMBER "DOFNUMBER" true true false 16 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,DOFNUMBER,0,16;USFSNUMBER "USFSNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,USFSNUMBER,0,8;ADDNUMBER "ADDNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ADDNUMBER,0,8;PERIMETERDATE "PERIMETERDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,PERIMETERDATE,-1,-1;LATESTPERIMETER "LATESTPERIMETER" true true false 4 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,LATESTPERIMETER,0,4;SOURCE "SOURCE" true true false 30 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCE,0,30;SOURCEMETHOD "SOURCEMETHOD" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCEMETHOD,0,32;SOURCECLASS "SOURCECLASS" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCECLASS,0,32;AGENCYACRES "AGENCYACRES" true true false 8 Double 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,AGENCYACRES,-1,-1;ACREAGEMETHOD "ACREAGEMETHOD" true true false 50 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ACREAGEMETHOD,0,50;COMMENTS "COMMENTS" true true false 512 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,COMMENTS,0,512;FIREID "FIREID" true true false 4 Long 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIREID,-1,-1;FIREYEAR "FIREYEAR" true true false 5 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIREYEAR,0,5;UPDATETIME "UPDATETIME" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,UPDATETIME,-1,-1;UPDATEUSER "UPDATEUSER" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,UPDATEUSER,0,32;USEDONFINALREPORT "USEDONFINALREPORT" true true false 3 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,USEDONFINALREPORT,0,3;FPOUTDATE "FPOUTDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FPOUTDATE,-1,-1;FPMERGEDDATE "FPMERGEDDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FPMERGEDDATE,-1,-1;IRWINID "IRWINID" true true false 128 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,IRWINID,0,128;PRESCRIBED "PRESCRIBED" true true false 1 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,PRESCRIBED,0,1;FIRESEASONS "FIRESEASONS" true true false 20 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIRESEASONS,0,20" # #</Process>
+				<Process Name="Truncate Table" ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\TruncateTable" Date="20210106" Time="072514">TruncateTable \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AlaskaFireHistory_Polygons.gdb\AK_fire_location_polygons</Process>
+				<Process Name="Append" ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\Append" Date="20210106" Time="072515">Append \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AlaskaFireHistory_Polygons.gdb\AK_fire_location_polygons "Use the Field Map to reconcile schema differences" "NAME "NAME" true true false 128 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,NAME,0,128;RECORDNUMBER "RECORDNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,RECORDNUMBER,0,8;ACRES "ACRES" true true false 8 Double 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ACRES,-1,-1;AFSNUMBER "AFSNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,AFSNUMBER,0,8;DOFNUMBER "DOFNUMBER" true true false 16 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,DOFNUMBER,0,16;USFSNUMBER "USFSNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,USFSNUMBER,0,8;ADDNUMBER "ADDNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ADDNUMBER,0,8;PERIMETERDATE "PERIMETERDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,PERIMETERDATE,-1,-1;LATESTPERIMETER "LATESTPERIMETER" true true false 4 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,LATESTPERIMETER,0,4;SOURCE "SOURCE" true true false 30 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCE,0,30;SOURCEMETHOD "SOURCEMETHOD" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCEMETHOD,0,32;SOURCECLASS "SOURCECLASS" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCECLASS,0,32;AGENCYACRES "AGENCYACRES" true true false 8 Double 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,AGENCYACRES,-1,-1;ACREAGEMETHOD "ACREAGEMETHOD" true true false 50 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ACREAGEMETHOD,0,50;COMMENTS "COMMENTS" true true false 512 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,COMMENTS,0,512;FIREID "FIREID" true true false 4 Long 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIREID,-1,-1;FIREYEAR "FIREYEAR" true true false 5 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIREYEAR,0,5;UPDATETIME "UPDATETIME" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,UPDATETIME,-1,-1;UPDATEUSER "UPDATEUSER" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,UPDATEUSER,0,32;USEDONFINALREPORT "USEDONFINALREPORT" true true false 3 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,USEDONFINALREPORT,0,3;FPOUTDATE "FPOUTDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FPOUTDATE,-1,-1;FPMERGEDDATE "FPMERGEDDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FPMERGEDDATE,-1,-1;IRWINID "IRWINID" true true false 128 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,IRWINID,0,128;PRESCRIBED "PRESCRIBED" true true false 1 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,PRESCRIBED,0,1;FIRESEASONS "FIRESEASONS" true true false 20 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIRESEASONS,0,20" # #</Process>
+				<Process Name="Truncate Table" ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\TruncateTable" Date="20210106" Time="073150">TruncateTable \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AlaskaFireHistory_Polygons.gdb\AK_fire_location_polygons</Process>
+				<Process Name="Append" ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\Append" Date="20210106" Time="073151">Append \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated \\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AlaskaFireHistory_Polygons.gdb\AK_fire_location_polygons "Use the Field Map to reconcile schema differences" "NAME "NAME" true true false 128 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,NAME,0,128;RECORDNUMBER "RECORDNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,RECORDNUMBER,0,8;ACRES "ACRES" true true false 8 Double 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ACRES,-1,-1;AFSNUMBER "AFSNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,AFSNUMBER,0,8;DOFNUMBER "DOFNUMBER" true true false 16 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,DOFNUMBER,0,16;USFSNUMBER "USFSNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,USFSNUMBER,0,8;ADDNUMBER "ADDNUMBER" true true false 8 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ADDNUMBER,0,8;PERIMETERDATE "PERIMETERDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,PERIMETERDATE,-1,-1;LATESTPERIMETER "LATESTPERIMETER" true true false 4 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,LATESTPERIMETER,0,4;SOURCE "SOURCE" true true false 30 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCE,0,30;SOURCEMETHOD "SOURCEMETHOD" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCEMETHOD,0,32;SOURCECLASS "SOURCECLASS" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,SOURCECLASS,0,32;AGENCYACRES "AGENCYACRES" true true false 8 Double 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,AGENCYACRES,-1,-1;ACREAGEMETHOD "ACREAGEMETHOD" true true false 50 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,ACREAGEMETHOD,0,50;COMMENTS "COMMENTS" true true false 512 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,COMMENTS,0,512;FIREID "FIREID" true true false 4 Long 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIREID,-1,-1;FIREYEAR "FIREYEAR" true true false 5 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIREYEAR,0,5;UPDATETIME "UPDATETIME" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,UPDATETIME,-1,-1;UPDATEUSER "UPDATEUSER" true true false 32 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,UPDATEUSER,0,32;USEDONFINALREPORT "USEDONFINALREPORT" true true false 3 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,USEDONFINALREPORT,0,3;FPOUTDATE "FPOUTDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FPOUTDATE,-1,-1;FPMERGEDDATE "FPMERGEDDATE" true true false 8 Date 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FPMERGEDDATE,-1,-1;IRWINID "IRWINID" true true false 128 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,IRWINID,0,128;PRESCRIBED "PRESCRIBED" true true false 1 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,PRESCRIBED,0,1;FIRESEASONS "FIRESEASONS" true true false 20 Text 0 0,First,#,\\ilmakfs3db1\GIS_Data\AKFireBaseData\ForWebsiteDistribution\AFS_DataForDistribution\WorkingDatasets.gdb\tmpFireLocationsPolygons_Updated,FIRESEASONS,0,20" # #</Process>
+			</lineage>
+		</DataProperties>
+		<SyncDate>20210929</SyncDate>
+		<SyncTime>09470000</SyncTime>
+		<ModDate>20210929</ModDate>
+		<ModTime>09470000</ModTime>
+		<ArcGISFormat>1.0</ArcGISFormat>
+	</Esri>
+	<mdChar>
+		<CharSetCd value="004"/>
+	</mdChar>
+	<mdHrLv>
+		<ScopeCd value="005"/>
+	</mdHrLv>
+	<mdContact>
+		<rpOrgName>Bureau of Land Management (BLM), Alaska Fire Service (AFS)</rpOrgName>
+		<rpPosName>GIS Specialist</rpPosName>
+		<rpCntInfo>
+			<cntAddress addressType="postal">
+				<delPoint>P.O. Box 35005</delPoint>
+				<city>Fort Wainwright</city>
+				<adminArea>AK</adminArea>
+				<postCode>99703</postCode>
+				<country>US</country>
+				<eMailAdd>blm_ak_afs_gis@blm.gov</eMailAdd>
+			</cntAddress>
+			<cntInstr>Contact by email.</cntInstr>
+		</rpCntInfo>
+		<role>
+			<RoleCd value="007"/>
+		</role>
+	</mdContact>
+	<mdDateSt>20200102</mdDateSt>
+	<mdStanName>ArcGIS Metadata</mdStanName>
+	<mdStanVer>1.0</mdStanVer>
+	<distInfo>
+		<distTranOps>
+			<onLineSrc>
+				<linkage>https://fire.ak.blm.gov/predsvcs/maps.php</linkage>
+			</onLineSrc>
+			<transSize Sync="TRUE">0.000</transSize></distTranOps>
+		<distFormat><formatName Sync="TRUE">Shapefile</formatName></distFormat></distInfo>
+	<dataIdInfo>
+		<idCitation>
+			<resTitle>Alaska Fire History Perimeter Polygons</resTitle>
+			<date>
+				<pubDate>2021-01-06</pubDate>
+			</date>
+			<citRespParty>
+				<rpOrgName>Alaska Wildland Fire Coordinating Group (AWFCG)</rpOrgName>
+				<role>
+					<RoleCd value="006"/>
+				</role>
+			</citRespParty>
+			<citRespParty>
+				<rpOrgName>Alaska Interagency Coordination Center (AICC)</rpOrgName>
+				<role>
+					<RoleCd value="006"/>
+				</role>
+			</citRespParty>
+			<citRespParty>
+				<rpOrgName>U.S. Department of the Interior, Bureau of Land Management (BLM), Alaska Fire Service</rpOrgName>
+				<role>
+					<RoleCd value="006"/>
+				</role>
+			</citRespParty>
+			<citRespParty>
+				<rpOrgName>Bureau of Land Management</rpOrgName>
+				<rpCntInfo>
+					<cntAddress>
+						<delPoint>Fairbanks, Alaska</delPoint>
+					</cntAddress>
+				</rpCntInfo>
+				<role>
+					<RoleCd value="010"/>
+				</role>
+			</citRespParty>
+			<presForm><PresFormCd value="005" Sync="TRUE"></PresFormCd></presForm></idCitation>
+		<idAbs>Alaska Fire History Perimeter Polygons is a time series, starting in 1940, of annual layers of areas burned in each calendar year across Alaska, where the burn scar left by each fire event is represented by the best available delineation.  The polygons represent perimeters of wildfires that occur naturally (e.g., lightning) or by humans accidentally (e.g., escaped campfire) or maliciously across Alaska.  NOTE:  Not all recorded wildland fires are associated with a perimeter polygon.  For wildfires occurring before 1987, emphasis was placed on mapping perimeters of at least 1,000 acres.  From 1987 to 2015, emphasis was placed on mapping wildfires with perimeters of at least 100 acres.  From 2016 forward, fires over 10 acres should be associated with perimeters.  The delineations range in quality from hand sketched perimeters drawn on topographic maps to heads-up interpretation of fine scale satellite imagery (e.g., Sentinel-2 imagery, 10 meter resolution). Although this is a comprehensive dataset, it is not complete and is subject to revision. Users should be aware that there are many of the fires between 1961 and 1968 are missing fire reports.  Data are available as ArcGIS Server Map and Feature Services https://fire.ak.blm.gov/arcgis/rest/services/MapAndFeatureServices or for download from https://fire.ak.blm.gov/predsvcs/maps.php.</idAbs>
+		<idPurp>This dataset is used to display the perimeters of historical fires on maps. These data should not be used at a scale larger than 1:63,360. These data are provided by Bureau of Land Management (BLM) Alaska Fire Service, on behalf of the Alaska Wildland Fire Coordinating Group (AWFCG) and Alaska Interagency Coordination Center (AICC). Data are available as ArcGIS Server Map and Feature Services https://fire.ak.blm.gov/arcgis/rest/services/MapAndFeatureServices (recommended method) or for download from https://fire.ak.blm.gov/predsvcs/maps.php.</idPurp>
+		<idCredit>Alaska Wildland Fire Coordinating Group, State of Alaska Department of Natural Resources, Division of Forestry, USDA Forest Service, DOI Bureau of Land Management, Alaska Fire Service</idCredit>
+		<idStatus>
+			<ProgCd value="007"/>
+		</idStatus>
+		<idPoC>
+			<rpOrgName>Bureau of Land Management (BLM), Alaska Fire Service (AFS)</rpOrgName>
+			<rpPosName>GIS Specialist</rpPosName>
+			<rpCntInfo>
+				<cntAddress addressType="postal">
+					<delPoint>P.O. Box 35005</delPoint>
+					<city>Fort Wainwright</city>
+					<adminArea>AK</adminArea>
+					<postCode>99703</postCode>
+					<country>US</country>
+					<eMailAdd>blm_ak_afs_gis@blm.gov</eMailAdd>
+				</cntAddress>
+				<cntInstr>Contact by email.</cntInstr>
+			</rpCntInfo>
+			<role>
+				<RoleCd value="007"/>
+			</role>
+		</idPoC>
+		<resMaint>
+			<maintFreq>
+				<MaintFreqCd value="008"/>
+			</maintFreq>
+		</resMaint>
+		<placeKeys>
+			<keyword>Alaska</keyword>
+			<thesaName>
+				<resTitle>BLM-STATE</resTitle>
+			</thesaName>
+		</placeKeys>
+		<placeKeys>
+			<keyword>Alaska</keyword>
+			<thesaName>
+				<resTitle>Geographic Names Information System (GNIS)</resTitle>
+			</thesaName>
+		</placeKeys>
+		<themeKeys>
+			<keyword>biota</keyword>
+			<keyword>environment</keyword>
+			<thesaName>
+				<resTitle>ISO 19115 Topic Category</resTitle>
+			</thesaName>
+		</themeKeys>
+		<themeKeys>
+			<keyword>Disturbance</keyword>
+			<keyword>Fire</keyword>
+			<keyword>Geospatial</keyword>
+			<keyword>Management</keyword>
+			<thesaName>
+				<resTitle>BLM-THEME</resTitle>
+			</thesaName>
+		</themeKeys>
+		<themeKeys>
+			<keyword>wildland fire</keyword>
+			<keyword>fire perimeters</keyword>
+			<keyword>wildland fire history</keyword>
+			<keyword>fire history</keyword>
+			<keyword>Fire</keyword>
+		</themeKeys>
+		<searchKeys>
+			<keyword>biota</keyword>
+			<keyword>environment</keyword>
+			<keyword>Disturbance</keyword>
+			<keyword>Fire</keyword>
+			<keyword>Geospatial</keyword>
+			<keyword>Management</keyword>
+			<keyword>Alaska</keyword>
+			<keyword>wildland fire</keyword>
+			<keyword>fire perimeters</keyword>
+			<keyword>wildland fire history</keyword>
+			<keyword>fire history</keyword>
+			<keyword>Fire</keyword>
+			<keyword>Alaska</keyword>
+		</searchKeys>
+		<resConst>
+			<Consts><useLimit>These data are provided by Bureau of Land Management (BLM) Alaska Fire Service, on behalf of the Alaska Wildland Fire Coordinating Group (AWFCG) and Alaska Interagency Coordination Center (AICC). These data are provided “as is” and might contain errors or omissions. The User assumes the entire risk associated with its use of these data and bears all responsibility in determining whether these data are fit for the User’s intended use. The information contained in these data is dynamic and may change over time. The data are not better than the sources from which they were derived, and both scale and accuracy may vary across the data set. These data might not have the accuracy, resolution, completeness, timeliness, or other characteristics appropriate for applications that potential users of the data may contemplate. The User is encouraged to carefully consider the content of the metadata file associated with these data. These data are neither legal documents nor land surveys, and must not be used as such. Please report any errors in the data to AFS. The BLM and AWFCG should be cited as the data source in any products derived from these data. Any Users wishing to modify the data should describe the types of modifications they have performed. The User should not misrepresent the data, nor imply that changes made were approved or endorsed by BLM. This data may be updated by the BLM without notification. These data were digitized and edited from best available sources and are for general purposes related to Geographic Information System and mapping applications at small to intermediate (1:63360) geographic scales. Users are cautioned that digital enlargement of these data to scales larger than that at which they were originally mapped can cause misinterpretation. Users are further cautioned that these data and interpretations derived from them do not eliminate the need for on site survey and evaluation of specific sites.</useLimit>
+			</Consts>
+		</resConst>
+		<resConst>
+			<LegConsts>
+				<useLimit>These data are provided by Bureau of Land Management (BLM) Alaska Fire Service, on behalf of the Alaska Wildland Fire Coordinating Group (AWFCG) and Alaska interagency Coordination Center (AICC). The BLM assumes no responsibility for errors or omissions. No warranty is made by the BLM as to the accuracy, reliability, or completeness of these data for individual use or aggregate use with other data; nor shall the act of distribution to contractors, partners, or beyond, constitute any such warranty for individual or aggregate data use with other data. Although these data have been processed successfully on computers of BLM, no warranty, expressed or implied, is made by BLM regarding the use of these data on any other system, or for general or scientific purposes, nor does the fact of distribution constitute or imply any such warranty. In no event shall the BLM have any liability whatsoever for payment of any consequential, incidental, indirect, special, or tort damages of any kind, including, but not limited to, any loss of profits arising out of the use or reliance on the geographic data or arising out of the delivery, installation, operation, or support by BLM.</useLimit>
+				<accessConsts>
+					<RestrictCd value="008"/>
+				</accessConsts>
+				<othConsts>None, these data are considered public domain.</othConsts>
+			</LegConsts>
+		</resConst>
+		<tpCat>
+			<TopicCatCd value="002"/>
+		</tpCat>
+		<tpCat>
+			<TopicCatCd value="007"/>
+		</tpCat>
+		<dataExt>
+			<geoEle>
+				<GeoBndBox>
+					<exTypeCode>true</exTypeCode>
+					<westBL>-178.841456</westBL>
+					<eastBL>-132.599417</eastBL>
+					<northBL>70.159162</northBL>
+					<southBL>51.546944</southBL>
+				</GeoBndBox>
+			</geoEle>
+		</dataExt>
+		<dataExt>
+			<exDesc>ground condition</exDesc>
+			<tempEle>
+				<TempExtent>
+					<exTemp>
+						<TM_Period>
+							<tmBegin>1940-06-01</tmBegin>
+							<tmEnd>2020-12-31</tmEnd>
+						</TM_Period>
+					</exTemp>
+				</TempExtent>
+			</tempEle>
+			<geoEle/></dataExt>
+		<envirDesc Sync="TRUE"> Version 6.2 (Build 9200) ; Esri ArcGIS 10.2.2.3552</envirDesc><dataLang><languageCode value="eng" Sync="TRUE"></languageCode><countryCode value="USA" Sync="TRUE"></countryCode></dataLang><spatRpType><SpatRepTypCd value="001" Sync="TRUE"></SpatRepTypCd></spatRpType><dataExt><geoEle><GeoBndBox esriExtentType="search"><exTypeCode Sync="TRUE">1</exTypeCode><westBL Sync="TRUE">-180.000000</westBL><eastBL Sync="TRUE">180.000000</eastBL><northBL Sync="TRUE">70.189890</northBL><southBL Sync="TRUE">51.546170</southBL></GeoBndBox></geoEle></dataExt></dataIdInfo>
+	<mdMaint>
+		<maintFreq>
+			<MaintFreqCd value="012"/>
+		</maintFreq>
+		<maintNote>Last metadata review date: 2020-01-02</maintNote>
+	</mdMaint>
+	<dqInfo>
+		<dqScope>
+			<scpLvl>
+				<ScopeCd value="005"/>
+			</scpLvl>
+		</dqScope>
+		<report type="DQConcConsis">
+			<measDesc>Fires within years cannot overlap.</measDesc>
+		</report>
+		<report type="DQCompOm">
+			<measDesc>Only fires within the State of Alaska are included in this dataset and not all recorded wildland fires are associated with a perimeter polygon. Although this dataset is comprehensive, it is not complete and is subject to revision.</measDesc>
+		</report>
+		<dataLineage>
+			<prcStep>
+				<stepDesc>Data continually submitted by multiple sources.</stepDesc>
+				<stepDateTm>2020-01-02</stepDateTm>
+				<stepProc>
+					<rpOrgName>Bureau of Land Management (BLM), Alaska Fire Service (AFS)</rpOrgName>
+					<rpPosName>GIS Specialist</rpPosName>
+					<rpCntInfo>
+						<cntAddress addressType="postal">
+							<delPoint>P.O. Box 35005</delPoint>
+							<city>Fort Wainwright</city>
+							<adminArea>Alaska</adminArea>
+							<postCode>99703</postCode>
+							<country>US</country>
+							<eMailAdd>blm_ak_afs_gis@blm.gov</eMailAdd>
+						</cntAddress>
+						<cntInstr>Contact by email.</cntInstr>
+					</rpCntInfo>
+					<role>
+						<RoleCd value="009"/>
+					</role>
+				</stepProc>
+			</prcStep>
+		</dataLineage>
+	</dqInfo>
+	<eainfo xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<detailed Name="AK_fire_location_polygons">
+			<enttyp>
+				<enttypl>AK_fire_location_polygons</enttypl>
+				<enttypd>Table containing attribute information associated with the data set.</enttypd>
+				<enttypds>AFS</enttypds>
+				<enttypt Sync="TRUE">Feature Class</enttypt><enttypc Sync="TRUE">0</enttypc></enttyp>
+			<attr><attrlabl Sync="TRUE">FID</attrlabl><attalias Sync="TRUE">FID</attalias><attrtype Sync="TRUE">OID</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale><attrdef Sync="TRUE">Internal feature number.</attrdef><attrdefs Sync="TRUE">Esri</attrdefs><attrdomv><udom Sync="TRUE">Sequential unique whole numbers that are automatically generated.</udom></attrdomv></attr><attr>
+				<attrlabl>SHAPE</attrlabl>
+				<attrdef>Feature geometry.</attrdef>
+				<attrdefs>ESRI</attrdefs>
+				<attrdomv>
+					<udom>Coordinates defining the features.</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">Shape</attalias><attrtype Sync="TRUE">Geometry</attrtype><attwidth Sync="TRUE">0</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>NAME</attrlabl>
+				<attrdef>Name of the fire, assigned by Dispatch Centers.</attrdef>
+				<attrdefs>AICC</attrdefs>
+				<attrdomv>
+					<udom>Free text.</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">NAME</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">128</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr><attrlabl Sync="TRUE">RECORDNUMB</attrlabl><attalias Sync="TRUE">RECORDNUMB</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">8</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr>
+				<attrlabl>ACRES</attrlabl>
+				<attrdef>GIS calculated area, expressed in acres.</attrdef>
+				<attrdefs>AFS</attrdefs>
+				<attrdomv>
+					<udom>Positive numbers.</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">ACRES</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">19</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>AFSNUMBER</attrlabl>
+				<attrdef>AFS fire code.</attrdef>
+				<attrdefs>AFS</attrdefs>
+				<attrdomv>
+					<udom>Numeric or alphanumeric values.</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">AFSNUMBER</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">8</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>DOFNUMBER</attrlabl>
+				<attrdef>State of Alaska fire code.</attrdef>
+				<attrdefs>DOF</attrdefs>
+				<attrdomv>
+					<udom>Numeric or alphanumeric values.</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">DOFNUMBER</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">16</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>USFSNUMBER</attrlabl>
+				<attrdef>USFS fire code.</attrdef>
+				<attrdefs>USFS</attrdefs>
+				<attrdomv>
+					<udom>Numeric or alphanumeric values.</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">USFSNUMBER</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">8</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>ADDNUMBER</attrlabl>
+				<attrdef>Field for internal AFS use.</attrdef>
+				<attrdefs>AFS</attrdefs>
+				<attrdomv>
+					<udom>Positive numbers.</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">ADDNUMBER</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">8</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr><attrlabl Sync="TRUE">PERIMETERD</attrlabl><attalias Sync="TRUE">PERIMETERD</attalias><attrtype Sync="TRUE">Date</attrtype><attwidth Sync="TRUE">8</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">LATESTPERI</attrlabl><attalias Sync="TRUE">LATESTPERI</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr>
+				<attrlabl>SOURCE</attrlabl>
+				<attrdef>Source used to delineate the fire perimeter.</attrdef>
+				<attrdefs>AFS</attrdefs>
+				<attrdomv>
+					<udom>Values include: Digitized-Topo, GPS, GPS-Flight, GPS-Unknown, GPS-Walked, GPS-Walked/Driven, Hand Sketch, Image Analysis, Image Interpretation, Mixed Methods, Other, Remote Sensing Derived, NULL, and Unknown.</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">SOURCE</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">30</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr><attrlabl Sync="TRUE">SOURCEMETH</attrlabl><attalias Sync="TRUE">SOURCEMETH</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">32</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">SOURCECLAS</attrlabl><attalias Sync="TRUE">SOURCECLAS</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">32</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">AGENCYACRE</attrlabl><attalias Sync="TRUE">AGENCYACRE</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">19</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">ACREAGEMET</attrlabl><attalias Sync="TRUE">ACREAGEMET</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">50</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr>
+				<attrlabl>COMMENTS</attrlabl>
+				<attrdef>Any comments associated with the data record.</attrdef>
+				<attrdefs>AFS</attrdefs>
+				<attrdomv>
+					<udom>Free text</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">COMMENTS</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">254</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>FIREID</attrlabl>
+				<attrdef>ID for the fire. This field is used to join fire perimeter (polygon) records to fire locations (point). Perimeter FIREID = Fire points ID.</attrdef>
+				<attrdefs>AFS</attrdefs>
+				<attrdomv>
+					<udom>Whole, positive numbers</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">FIREID</attalias><attrtype Sync="TRUE">Integer</attrtype><attwidth Sync="TRUE">9</attwidth><atprecis Sync="TRUE">9</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>FIREYEAR</attrlabl>
+				<attrdef>Year the fire occured.</attrdef>
+				<attrdefs>AFS</attrdefs>
+				<attrdomv>
+					<udom>Year (YYYY)</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">FIREYEAR</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">5</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>UPDATETIME</attrlabl>
+				<attrdef>Time the data record was updated</attrdef>
+				<attrdefs>AFS</attrdefs>
+				<attrdomv>
+					<udom>Time</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">UPDATETIME</attalias><attrtype Sync="TRUE">Date</attrtype><attwidth Sync="TRUE">8</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>UPDATEUSER</attrlabl>
+				<attrdef>User updating the record.</attrdef>
+				<attrdefs>AFS</attrdefs>
+				<attrdomv>
+					<udom>Free text.</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">UPDATEUSER</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">32</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr><attrlabl Sync="TRUE">USEDONFINA</attrlabl><attalias Sync="TRUE">USEDONFINA</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">3</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr>
+				<attrlabl>FPOUTDATE</attrlabl>
+				<attrdef>Date a fire is declared 'out'.</attrdef>
+				<attrdefs>AFS</attrdefs>
+				<attrdomv>
+					<udom>Date</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">FPOUTDATE</attalias><attrtype Sync="TRUE">Date</attrtype><attwidth Sync="TRUE">8</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr><attrlabl Sync="TRUE">FPMERGEDDA</attrlabl><attalias Sync="TRUE">FPMERGEDDA</attalias><attrtype Sync="TRUE">Date</attrtype><attwidth Sync="TRUE">8</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr>
+				<attrlabl>IRWINID</attrlabl>
+				<attrdef>Unique ID assigned by the Integrated Reporting of Wildland-Fire Information (IRWIN) application.</attrdef>
+				<attrdefs>IRWIN</attrdefs>
+				<attrdomv>
+					<udom>UUID</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">IRWINID</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">128</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>PRESCRIBED</attrlabl>
+				<attrdef>Identify prescribed fires. Yes or No</attrdef>
+				<attrdefs>AFS</attrdefs>
+				<attrdomv>
+					<udom>Yes or No</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">PRESCRIBED</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">1</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr><attrlabl Sync="TRUE">FIRESEASON</attrlabl><attalias Sync="TRUE">FIRESEASON</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">20</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">Shape_Leng</attrlabl><attalias Sync="TRUE">Shape_Leng</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">19</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr>
+				<attrlabl>SHAPE_Area</attrlabl>
+				<attrdef>Area of feature in internal units squared.</attrdef>
+				<attrdefs>Esri</attrdefs>
+				<attrdomv>
+					<udom>Positive real numbers that are automatically generated.</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">Shape_Area</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">19</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+		</detailed>
+		<overview>
+			<eaover>This dataset represents the perimeters of wildfires that occur naturally (e.g., lightning) or by humans accidentally (e.g., escaped campfire) or maliciously across Alaska.</eaover>
+		</overview>
+	</eainfo>
+	<mdLang><languageCode value="eng" Sync="TRUE"></languageCode><countryCode value="USA" Sync="TRUE"></countryCode></mdLang><mdHrLvName Sync="TRUE">dataset</mdHrLvName><refSysInfo><RefSystem><refSysID><identCode code="3338" Sync="TRUE"></identCode><idCodeSpace Sync="TRUE">EPSG</idCodeSpace><idVersion Sync="TRUE">8.2.6</idVersion></refSysID></RefSystem></refSysInfo><spatRepInfo><VectSpatRep><geometObjs Name="AK_fire_location_polygons"><geoObjTyp><GeoObjTypCd value="002" Sync="TRUE"></GeoObjTypCd></geoObjTyp><geoObjCnt Sync="TRUE">0</geoObjCnt></geometObjs><topLvl><TopoLevCd value="001" Sync="TRUE"></TopoLevCd></topLvl></VectSpatRep></spatRepInfo><spdoinfo><ptvctinf><esriterm Name="AK_fire_location_polygons"><efeatyp Sync="TRUE">Simple</efeatyp><efeageom code="4" Sync="TRUE"></efeageom><esritopo Sync="TRUE">FALSE</esritopo><efeacnt Sync="TRUE">0</efeacnt><spindex Sync="TRUE">FALSE</spindex><linrefer Sync="TRUE">FALSE</linrefer></esriterm></ptvctinf></spdoinfo></metadata>
