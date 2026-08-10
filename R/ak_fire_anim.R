@@ -28,27 +28,58 @@ fps       <- 6
 
 # Colour. `crimson` is the validated fire-age ramp, ordered OLDEST -> NEWEST.
 fire_ramp <- fire_ramps$crimson
-# Accent for the frame's own year. Not part of the sequential encoding -- it is a
-# highlight, so it sits above the ramp's top step in lightness. It carries no
-# legend key: the record ends in 2020, so any present-tense label would be wrong,
-# and the huge year numeral plus the matching timeline row already identify it.
+# Accent for the frame's own year: age 0. Sits above the ramp's top step in
+# lightness so "burned in the year on screen" is unmistakable. It appears in the
+# legend as the age scale's terminal 0 step, with the calendar year named -- an
+# earlier "burning this year" label read as the present day rather than the
+# frame's year, which is exactly the misreading the year in the caption prevents.
 ignite <- "#FFF6E0"
 
 bg        <- "#0d0d0d"   # background / ocean
-land_flat <- "#232320"   # land tone used when no hillshade is available
-# Terrain must stay SUBORDINATE to the fire. A lighter land_hi renders lovely
-# relief and then competes with the data for attention -- at #57554f the
-# hillshade was the loudest element in the frame. Keep the land in a narrow dark
-# band; it still shows the ranges, it just stops shouting.
-land_lo   <- "#161614"   # hillshade darkest (a touch above bg so coast reads)
-land_hi   <- "#3b3934"   # hillshade lightest
-intak_col <- "#4e4c45"   # interior outline: must clear land_hi to stay visible
+land_flat <- "#2c2a27"   # land tone used when no hillshade is available
+
+# Terrain must stay SUBORDINATE to the fire, but it was previously dark enough
+# that the relief barely read. Lifted by one shade, and NOT two: the fire ramp's
+# darkest step (#8C1754) sits at OKLCH L 0.430, and land_hi at L 0.398 stays
+# under it, so 40-year-old burns remain figure against ground. Two shades
+# (#575349, L 0.443) would put the land ABOVE the darkest fire and invert that,
+# turning old burns into holes.
+#
+# Colour distance would not have caught this: dE from land_hi to the darkest fire
+# is ~16 either way, because the crimson carries chroma 0.159 against near-neutral
+# land. Lightness ORDERING is the binding constraint, not dE.
+land_lo   <- "#1f1e1b"   # hillshade darkest (a touch above bg so coast reads)
+land_hi   <- "#494741"   # hillshade lightest
+
+# Interior outline. Two shades lighter (L 0.416 -> 0.517) to hold up against dense
+# accumulated fire. The bigger win is the WEIGHT: lwd is in 1/96 inch, so at
+# res = 72 the old lwd 1.2 rendered at 0.90 px -- thinner than one pixel, hence
+# antialiased into partial transparency. lwd 2.0 gives a solid 1.5 px.
+intak_col <- "#6a6860"
+intak_lwd <- 2.0
+
 ink_pri   <- "#ffffff"
 ink_sec   <- "#c3c2b7"
 ink_mut   <- "#898781"
 hairline  <- "#2c2c2a"
 
 label_years <- c(2004, 2005, 2015)   # direct-labelled in the subplot
+
+# ---- type scale --------------------------------------------------------------
+# agg_png here runs at res = 72 with pointsize = 12, so cex = points / 12.
+# Sizes are written in points because that is the unit worth reasoning in, and it
+# makes "everything up 3 points" a three-character edit rather than a hunt for
+# scattered cex literals.
+pt <- function(points) points / 12
+
+sz_year   <- pt(103)   # the year numeral -- deliberately not bumped
+sz_cum    <- pt(31)    # cumulative ha figure -- deliberately not bumped
+sz_title  <- pt(27)
+sz_body   <- pt(22)    # "N ha this year", "Annual area burned"
+sz_sub    <- pt(20)    # "cumulative burned area since 1980"
+sz_legend <- pt(19)    # legend caption
+sz_cursor <- pt(18)    # current-year label in the timeline
+sz_axis   <- pt(17)    # legend ticks, decade labels, direct labels, credit
 
 frames_dir <- here("render", "frames")
 out_dir    <- here("render")
@@ -146,7 +177,7 @@ render_frame <- function(i, path) {
   }
 
   # interior AK: an optional highlight, not a hard boundary
-  plot(intak_outline, border = intak_col, lwd = 1.2, add = TRUE)
+  plot(intak_outline, border = intak_col, lwd = intak_lwd, add = TRUE)
 
   # fire, coloured by age; `recent` carries the most recent burn year per pixel
   if (!is.null(recent_cache$r)) {
@@ -167,33 +198,49 @@ render_frame <- function(i, path) {
   L <- 0.10          # panel left margin
   R <- 0.94          # panel right margin
 
-  text(L, 0.955, y, col = ignite, adj = c(0, 1), cex = 8.6)
-  text(L + 0.005, 0.855, "Alaska wildfire, 1980-2020", col = ink_sec,
-       adj = c(0, 1), cex = 2.0)
+  # Vertical rhythm: the text block above is spaced ~0.05 apart, so the legend
+  # needs a visibly LARGER break than that or it reads as another line of body
+  # copy rather than a separate element. The top block is pulled up slightly and
+  # the legend pushed down to open that gap to ~0.065.
+  text(L, 0.955, y, col = ignite, adj = c(0, 1), cex = sz_year)
+  text(L + 0.005, 0.862, "Alaska wildfire, 1980-2020", col = ink_sec,
+       adj = c(0, 1), cex = sz_title)
 
-  text(L + 0.005, 0.800,
+  text(L + 0.005, 0.806,
        paste0(fmt_ha(annual$cum_ha[annual$year == y]), " ha"),
-       col = ink_pri, adj = c(0, 1), cex = 2.6)
-  text(L + 0.005, 0.762, paste0("cumulative burned area since ", first_year),
-       col = ink_mut, adj = c(0, 1), cex = 1.4)
+       col = ink_pri, adj = c(0, 1), cex = sz_cum)
+  text(L + 0.005, 0.766, paste0("cumulative burned area since ", first_year),
+       col = ink_mut, adj = c(0, 1), cex = sz_sub)
 
   this_yr <- annual$burned_ha[annual$year == y]
-  text(L + 0.005, 0.712, paste0(fmt_ha(this_yr), " ha this year"),
-       col = ink_sec, adj = c(0, 1), cex = 1.6)
+  text(L + 0.005, 0.716, paste0(fmt_ha(this_yr), " ha this year"),
+       col = ink_sec, adj = c(0, 1), cex = sz_body)
 
   # ---- fire-age scale legend (obliged: multi-hue semantic-heat ramp) ----
   # The gradient is built from age_cols itself, not from fire_ramp, so the legend
   # cannot drift out of step with the map the way it does if the two are written
   # independently. Reversed here because the bar reads oldest -> newest.
-  ly1 <- 0.640; ly0 <- 0.615
+  #
+  # The ignite accent is the scale's terminal 0 step, drawn from the same constant
+  # the map uses, with the calendar year named in the caption so "0" cannot be
+  # read as the present day.
+  ly1 <- 0.638; ly0 <- 0.612
   grad <- rev(age_cols)
-  xs <- seq(L, L + 0.60, length.out = length(grad) + 1)
+  gx1 <- L + 0.50                     # gradient ends here, short of the swatch
+  xs <- seq(L, gx1, length.out = length(grad) + 1)
   for (j in seq_along(grad)) {
     rect(xs[j], ly0, xs[j + 1], ly1, col = grad[j], border = NA)
   }
-  text(L, ly1 + 0.012, "years since fire", col = ink_mut, adj = c(0, 0), cex = 1.35)
-  text(L, ly0 - 0.008, "40", col = ink_mut, adj = c(0, 1), cex = 1.2)
-  text(L + 0.60, ly0 - 0.008, "1", col = ink_mut, adj = c(1, 1), cex = 1.2)
+  sw0 <- L + 0.535; sw1 <- L + 0.575  # the age-0 swatch, gapped off the ramp
+  rect(sw0, ly0, sw1, ly1, col = ignite, border = NA)
+
+  text(L, ly1 + 0.013,
+       paste0("years since fire   (0 = burned in ", y, ")"),
+       col = ink_mut, adj = c(0, 0), cex = sz_legend)
+  text(L, ly0 - 0.009, "40", col = ink_mut, adj = c(0, 1), cex = sz_axis)
+  text(gx1, ly0 - 0.009, "1", col = ink_mut, adj = c(1, 1), cex = sz_axis)
+  text((sw0 + sw1) / 2, ly0 - 0.009, "0", col = ink_sec, adj = c(0.5, 1),
+       cex = sz_axis)
 
   # ---- annual burned area, as a vertical timeline ----
   # One series, so no legend box -- the heading names it. Horizontal bars down a
@@ -201,7 +248,7 @@ render_frame <- function(i, path) {
   # matches time moving forward. Linear scale on purpose: 2004 is 13.5x the
   # median year and that skew IS the story; a sqrt axis would flatten it.
   # Cumulative total is the number above, never a second axis.
-  text(L, 0.545, "Annual area burned", col = ink_sec, adj = c(0, 0), cex = 1.6)
+  text(L, 0.548, "Annual area burned", col = ink_sec, adj = c(0, 0), cex = sz_body)
 
   ty1 <- 0.520; ty0 <- 0.055
   row <- (ty1 - ty0) / n
@@ -230,15 +277,19 @@ render_frame <- function(i, path) {
     rect(bx0, yy - bh / 2, bx0 + len, yy + bh / 2, col = col, border = NA)
   }
 
-  # decade labels only; a label per row would be unreadable
+  # Decade labels only; a label per row would be unreadable. Rows are 16.3 px and
+  # the type is 17-18 pt, so a label is taller than its own row: skip a decade
+  # whenever the cursor is within one row of it, or the two collide. Nothing is
+  # lost, because the cursor names that year itself.
   for (d in seq(1980, 2020, by = 10)) {
+    if (abs(d - y) <= 1) next
     j <- which(years == d)
-    text(bx0 - 0.02, ty1 - (j - 0.5) * row, d, col = ink_mut,
-         adj = c(1, 0.5), cex = 1.2)
+    text(bx0 - 0.022, ty1 - (j - 0.5) * row, d, col = ink_mut,
+         adj = c(1, 0.5), cex = sz_axis)
   }
   # the current year always names itself
-  text(bx0 - 0.02, ty1 - (which(years == y) - 0.5) * row, y, col = ignite,
-       adj = c(1, 0.5), cex = 1.25)
+  text(bx0 - 0.022, ty1 - (which(years == y) - 0.5) * row, y, col = ignite,
+       adj = c(1, 0.5), cex = sz_cursor)
 
   # selective direct labels: only the years that matter, once reached
   for (lyr in label_years) {
@@ -247,7 +298,7 @@ render_frame <- function(i, path) {
     len <- (annual$burned_ha[j] / ymax) * bmax
     text(bx0 + len + 0.015, ty1 - (j - 0.5) * row,
          paste0(format(round(annual$burned_ha[j] / 1e6, 1), nsmall = 1), "M ha"),
-         col = ink_sec, adj = c(0, 0.5), cex = 1.2)
+         col = ink_sec, adj = c(0, 0.5), cex = sz_axis)
   }
 
   # Credit only what is actually in the frame: until the hillshade exists the
@@ -256,7 +307,7 @@ render_frame <- function(i, path) {
        paste0("Perimeters: AICC",
               if (!is.null(hs)) " | Terrain: ArcticDEM v4.1" else "",
               " | EPSG:3338"),
-       col = ink_mut, adj = c(0, 0), cex = 1.15)
+       col = ink_mut, adj = c(0, 0), cex = sz_axis)
 }
 
 # ---- render ------------------------------------------------------------------
