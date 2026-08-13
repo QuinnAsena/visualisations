@@ -22,21 +22,34 @@ source(here("R", "iland_common.R"))
 
 width      <- 1920
 height     <- 1440
-disc_split <- 0.60
+disc_split <- 0.64       # a bigger disc buys pixels per ring: at 87 rings the
+                         # mean ring is only ~6 px, so every one counts, and
+                         # those pixels are what let w_clim_min go lower
 
-w_min <- 0.25            # thinnest ring as a fraction of the thickest
-gamma <- 0.7
-r0    <- 0.085           # pith
+# Ring width = precipitation PERCENTILE (see ring_widths), then narrowed again in
+# disturbed years. Both suppress growth in a real tree, which makes a thin ring
+# ambiguous on its own -- the scars are what disambiguate it.
+# Lowering this is the right lever for exaggerating precipitation. A multiplier
+# on the rank looked equivalent but clipped 9-19 years to identical widths for
+# the same pixel floor, which is information loss for no extra spread.
+w_clim_min <- 0.20       # driest year's share of the wettest year's width.
+                         # 4.9x ring ratio; the thinnest ring is 2.18 px, and
+                         # below ~2 px rings dissolve under antialiasing, so
+                         # this is close to the floor for a 602 px disc.
+dist_pen   <- 0.45       # width lost at maximum disturbance
+gamma      <- 0.7
+r0         <- 0.085      # pith
 
 # Pima and Pigl are adjacent in stack order and only 14.3 dE apart -- below the
 # 15 floor -- so they must not abut. A surface gap is the prescribed remedy;
 # re-stepping a colour esa-2026 already validated is not.
 sector_gap <- 0.0025     # radians inset each side of a species sector
 
-gutter <- 6 * pi / 180   # angular wedge reserved at 12 o'clock for the axis
+gutter <- 7 * pi / 180   # angular wedge at 12 o'clock: the climate strip + axis
 
-ring_line_col <- "#0d0d0d"
-ring_line_a   <- 0.30    # alpha of the year boundary hairline
+temp_smooth_k <- 11      # running-mean window for the temperature strip
+
+ring_line_a   <- 0.32    # alpha of the year boundary hairline
 ring_line_lwd <- 0.7
 
 # Wounds displace boundaries by a multiple of the MEAN ring width, not by a
@@ -44,8 +57,15 @@ ring_line_lwd <- 0.7
 # into lobes because the same fraction is a far bigger distance out there.
 scar_top_n      <- 8
 scar_sigma      <- 0.13  # angular spread (radians)
-scar_depth_rings <- 2.4  # displacement in units of mean ring width
-scar_decay      <- 0.88  # per-ring persistence of an older wound
+scar_depth_rings <- 6.0  # displacement in units of mean ring width. Deep enough
+                         # that fires visibly dent the outline -- the disc is not
+                         # meant to stay circular. The cummax guard in
+                         # boundary_field() is load-bearing at this depth.
+scar_decay      <- 0.99  # per-ring persistence of an older wound. Near 1 on
+                         # purpose: a real catface never fully closes, and at
+                         # 0.90 a mid-century scar retained 0.4% of its
+                         # amplitude by the rim, so the outline stayed perfectly
+                         # circular no matter how deep the wound was set.
 
 # Deflection alone is not enough: a bent ring boundary is indistinguishable from
 # a birch sector, because both read as radial features. A real fire scar shows as
@@ -56,11 +76,11 @@ scar_decay      <- 0.88  # per-ring persistence of an older wound
 # not a constant angle. An angular width tapering outward produced little dark
 # chevrons that read as floating debris; a constant-width radial crack reads as a
 # wound. Length scales with severity, so the worst years cut furthest.
-lesion_col    <- "#241408"
-lesion_alpha  <- 0.90
-lesion_halfw  <- 0.0055  # half-width in disc-radius units
-lesion_min    <- 3       # rings a scar runs outward, at minimum severity
-lesion_max    <- 11      # ... and at maximum
+lesion_col    <- "#1c0f06"
+lesion_alpha  <- 0.94
+lesion_halfw  <- 0.0090  # half-width in disc-radius units
+lesion_min    <- 4       # rings a scar runs outward, at minimum severity
+lesion_max    <- 17      # ... and at maximum
 
 n_theta <- 1441          # deflection grid resolution
 
@@ -68,6 +88,7 @@ sz_title <- pt(30)
 sz_body  <- pt(21)
 sz_label <- pt(18)
 sz_axis  <- pt(16)
+sz_year  <- pt(18)       # year markers: up 2 pt, bold, and on a plate
 
 # ---- deflected boundary field ------------------------------------------------
 
@@ -107,14 +128,19 @@ rad_at <- function(fld, k, theta, theta_grid) {
 
 # ---- drawing -----------------------------------------------------------------
 
-draw_disc <- function(m, di, cx = 0.5, cy = 0.5, scale = 0.455) {
+draw_disc <- function(m, di, pr, tmean, sc, cx = 0.5, cy = 0.5, scale = 0.49) {
   n <- nrow(m)
   years <- as.integer(rownames(m))
-  r <- ring_radii(di, w_min = w_min, gamma = gamma, r0 = r0)
+  w <- ring_widths(di, pr, sc, w_clim_min = w_clim_min,
+                   dist_pen = dist_pen, gamma = gamma)
+  r <- radii_from_widths(w, r0 = r0)
 
   # Scars sit at the angular midpoint of the sector that lost the most share
   # that year -- the wound lands where the damage did.
-  sc <- scar_species(m)
+  # NOT `sc` -- that is the climate-scales argument. Shadowing it made
+  # sc$t_lo NULL, and arithmetic against NULL silently returns length zero
+  # rather than erroring where the mistake was.
+  scsp <- scar_species(m)
   keep <- order(-di)[seq_len(min(scar_top_n, n))]
   keep <- keep[di[keep] > 0]
   span <- 2 * pi - gutter
@@ -124,7 +150,7 @@ draw_disc <- function(m, di, cx = 0.5, cy = 0.5, scale = 0.455) {
   if (length(keep) > 0) {
     ang <- vapply(keep, function(k) {
       cum <- c(0, cumsum(m[k, ]))
-      j <- match(sc$sp[k], SPECIES_ORDER_6)
+      j <- match(scsp$sp[k], SPECIES_ORDER_6)
       a_start - span * (cum[j] + cum[j + 1]) / 2
     }, numeric(1))
     scars <- data.frame(ring = keep, angle = ang %% (2 * pi),
@@ -134,7 +160,10 @@ draw_disc <- function(m, di, cx = 0.5, cy = 0.5, scale = 0.455) {
   theta_grid <- seq(0, 2 * pi, length.out = n_theta)
   fld <- boundary_field(r, scars, theta_grid)
 
-  line_col <- grDevices::adjustcolor(ring_line_col, alpha.f = ring_line_a)
+  # Latewood warms with the year's temperature. Atmospheric only -- it colours
+  # the boundary hairline, never the species fills, so identity is preserved.
+  line_cols <- grDevices::adjustcolor(latewood_colour(tmean, sc),
+                                      alpha.f = ring_line_a)
 
   for (k in seq_len(n)) {
     cum <- c(0, cumsum(m[k, ]))
@@ -182,7 +211,7 @@ draw_disc <- function(m, di, cx = 0.5, cy = 0.5, scale = 0.455) {
   for (k in 2:(n + 1)) {
     rr <- rad_at(fld, k, th, theta_grid)
     lines(cx + rr * cos(th) * scale, cy + rr * sin(th) * scale,
-          col = line_col, lwd = ring_line_lwd)
+          col = line_cols[min(k, n)], lwd = ring_line_lwd)
   }
 
   # Pith
@@ -190,48 +219,66 @@ draw_disc <- function(m, di, cx = 0.5, cy = 0.5, scale = 0.455) {
   polygon(cx + r0 * 0.92 * cos(tt) * scale, cy + r0 * 0.92 * sin(tt) * scale,
           col = bg, border = NA)
 
-  # ---- the gutter and its year axis ----
-  gth <- seq(a_start, a_start + gutter, length.out = 40)
+  # ---- the gutter: a per-year temperature strip, doubling as the year axis ----
+  gth <- seq(a_start, a_start + gutter, length.out = 24)
   outer_r <- max(fld[n + 1, ]) * 1.002
   polygon(c(cx + r0 * 0.9 * cos(gth) * scale, cx + rev(outer_r * cos(gth)) * scale),
           c(cy + r0 * 0.9 * sin(gth) * scale, cy + rev(outer_r * sin(gth)) * scale),
           col = bg, border = NA)
 
-  amid <- a_start + gutter / 2
-  dec <- which(years %% 20 == 0)
-  for (k in dec) {
-    rr <- r[k]
-    lines(cx + c(rr, rr * 1.0) * cos(amid) * scale,
-          cy + c(rr, rr) * sin(amid) * scale)
-    points(cx + rr * cos(amid) * scale, cy + rr * sin(amid) * scale,
-           pch = 16, cex = 0.55, col = ink_sec)
-    text(cx + rr * cos(amid) * scale - 0.012, cy + rr * sin(amid) * scale,
-         years[k], col = ink_sec, adj = c(1, 0.5), cex = sz_axis)
-  }
-  # First year anchors the pith. The last year is skipped when it is already a
-  # decade tick -- 2100 was being drawn twice, on top of itself.
-  text(cx + r[1] * cos(amid) * scale - 0.012, cy + r[1] * sin(amid) * scale,
-       years[1], col = ink_mut, adj = c(1, 0.5), cex = sz_axis)
-  if (!(years[n] %% 20 == 0)) {
-    rr <- max(fld[n + 1, ])
-    text(cx + rr * cos(amid) * scale - 0.012, cy + rr * sin(amid) * scale,
-         years[n], col = ink_mut, adj = c(1, 0.5), cex = sz_axis)
+  tcols <- temp_colour(tmean, sc)
+  for (k in seq_len(n)) {
+    polygon(c(cx + r[k] * cos(gth) * scale, cx + rev(r[k + 1] * 1.02 * cos(gth)) * scale),
+            c(cy + r[k] * sin(gth) * scale, cy + rev(r[k + 1] * 1.02 * sin(gth)) * scale),
+            col = tcols[k], border = NA)
   }
 
-  invisible(list(r = r, scars = scars))
+  # Year labels sit on a background plate so they stay legible over whatever the
+  # strip or the fills happen to be at that radius -- previously they were muted
+  # grey over an orange wedge and effectively invisible.
+  amid <- a_start + gutter * 1.35
+  lab_years <- years[years %% 20 == 0]
+  for (yy in c(years[1], lab_years)) {
+    k <- match(yy, years)
+    rr <- r[k]
+    x <- cx + rr * cos(amid) * scale
+    y <- cy + rr * sin(amid) * scale
+    lab <- as.character(yy)
+    wpad <- strwidth(lab, cex = sz_year) / 2 + 0.006
+    hpad <- strheight(lab, cex = sz_year) / 2 + 0.005
+    rect(x - 2 * wpad, y - hpad, x + 0.004, y + hpad, col = bg, border = NA)
+    text(x - 0.008, y, lab, col = ink_sec, adj = c(1, 0.5), cex = sz_year,
+         font = 2)
+    segments(x - 0.004, y, x + 0.010, y, col = ink_sec, lwd = 1.6)
+  }
+
+  invisible(list(r = r, w = w, scars = scars, fld = fld))
 }
 
 # ---- full frame --------------------------------------------------------------
 
 render_disc_frame <- function(path,
                               landscape = "landscape_alaska_01_2015-2100scenario",
-                              model = "NorEsm2-MM", replicate = 1) {
+                              model = "NorEsm2-MM", replicate = 1,
+                              cl = load_climate(), sc = climate_scales(cl)) {
   d <- load_area_dom(landscape)
   tr <- unique(d$treatment[d$model == model])
   if (length(tr) != 1) stop("Expected one treatment for model ", model)
   m <- share_matrix(d, tr, replicate)
   di <- disturbance_index(m)
   years <- as.integer(rownames(m))
+
+  # canon_gcm bridges NorEsm2-MM (iLand) and NorESM2-MM (climate). Without it
+  # this join silently returns nothing.
+  cg <- cl[cl$gcm == canon_gcm(model), ]
+  idx <- match(years, cg$year)
+  if (anyNA(idx)) stop("Climate missing for years: ",
+                       paste(years[is.na(idx)], collapse = ", "))
+  pr <- cg$pr[idx]
+  # Smoothed for colour so the trend reads instead of the annual noise; the
+  # caption says so. Precipitation stays raw -- its year-to-year jitter is the
+  # texture we want in the ring widths.
+  tmean <- smooth_trend(cg$tmean[idx], years)
 
   agg_png(path, width = width, height = height, background = bg)
   on.exit(invisible(dev.off()), add = TRUE)
@@ -241,7 +288,7 @@ render_disc_frame <- function(path,
   # circle rather than an ellipse stretched by the region's aspect.
   par(fig = c(0, disc_split, 0, 1), mar = c(0, 0, 0, 0), new = FALSE)
   plot.new(); plot.window(c(0, 1), c(0, 1), asp = 1)
-  draw_disc(m, di)
+  draw_disc(m, di, pr, tmean, sc)
 
   par(fig = c(disc_split, 1, 0, 1), mar = c(0, 0, 0, 0), new = TRUE)
   plot.new(); plot.window(c(0, 1), c(0, 1))
@@ -258,33 +305,87 @@ render_disc_frame <- function(path,
   text(L, 0.757, paste0(model, " · ssp245 · replicate ", replicate),
        col = ink_mut, adj = c(0, 1), cex = sz_body)
 
-  ky <- 0.665
+  ky <- 0.700
   for (j in seq_along(SPECIES_ORDER_6)) {
-    yy <- ky - (j - 1) * 0.050
-    rect(L, yy - 0.016, L + 0.052, yy + 0.016,
+    yy <- ky - (j - 1) * 0.044
+    rect(L, yy - 0.014, L + 0.048, yy + 0.014,
          col = SPECIES_COLOURS_DARK_6[j], border = NA)
-    text(L + 0.072, yy, SPECIES_LABELS[SPECIES_ORDER_6[j]], col = ink_sec,
+    text(L + 0.066, yy, SPECIES_LABELS[SPECIES_ORDER_6[j]], col = ink_sec,
          adj = c(0, 0.5), cex = sz_label)
   }
 
-  text(L, 0.315, "How to read it", col = ink_pri, adj = c(0, 1), cex = sz_body)
-  text(L, 0.272,
-       paste0("One ring per year, counted outward from the\n",
-              "pith. Each ring is divided by the share of\n",
-              "landscape area each species dominates.\n\n",
-              "Rings narrow when composition shifts hard, so\n",
-              "tightly spaced lines mark disrupted decades —\n",
-              "radius is not proportional to time.\n\n",
-              "Wounds mark the ", scar_top_n, " most disrupted years, set at\n",
-              "the species that lost the most ground. This is\n",
-              "a derived index of composition change, not\n",
-              "observed area burned."),
+  # ---- temperature key (the gutter strip) ----
+  ty <- 0.400
+  # Short label: the number is right-aligned on the same line, and the fuller
+  # "GAM trend" wording lives in the caption below.
+  text(L, ty + 0.030, "Temperature trend", col = ink_sec,
+       adj = c(0, 0), cex = sz_label)
+  # Magnitude in numbers, on the key's own line so it cannot collide with the
+  # severity block below. On a scale shared across GCMs a model that warms half
+  # as much SHOULD look half as dramatic -- that is the scale working, not
+  # failing -- but the reader still deserves the figure.
+  text(L + 0.40, ty + 0.032, sprintf("%+.1f°C", tail(tmean, 1) - tmean[1]),
+       col = ink_pri, adj = c(1, 0), cex = sz_axis)
+  tseq <- seq(sc$t_lo, sc$t_hi, length.out = 160)
+  xs <- seq(L, L + 0.40, length.out = 161)
+  for (j in seq_along(tseq)) {
+    rect(xs[j], ty - 0.012, xs[j + 1], ty + 0.012,
+         col = temp_colour(tseq[j], sc), border = NA)
+  }
+  # mark freezing, which is where the ramp pivots and the strip flips
+  xz <- L + 0.40 * (0 - sc$t_lo) / (sc$t_hi - sc$t_lo)
+  segments(xz, ty - 0.019, xz, ty + 0.019, col = ink_pri, lwd = 2)
+  text(L, ty - 0.026, paste0(round(sc$t_lo, 1), "°C"), col = ink_mut,
+       adj = c(0, 1), cex = sz_axis)
+  text(xz, ty - 0.026, "0", col = ink_sec, adj = c(0.5, 1), cex = sz_axis)
+  text(L + 0.40, ty - 0.026, paste0("+", round(sc$t_hi, 1), "°C"),
+       col = ink_mut, adj = c(1, 1), cex = sz_axis)
+
+
+  # ---- severity key ----
+  # Scar LENGTH and depth scale with disturbance; width deliberately does not,
+  # which is what keeps them reading as cracks rather than wedges.
+  sy <- 0.290
+  text(L, sy + 0.030, "Scar severity", col = ink_sec, adj = c(0, 0), cex = sz_label)
+  rect(L, sy - 0.036, L + 0.40, sy + 0.014,
+       col = SPECIES_COLOURS_DARK_6["Mixed.spruce"], border = NA)
+  for (j in 1:3) {
+    frac <- c(0.25, 0.6, 1)[j]
+    xx <- L + 0.07 + (j - 1) * 0.13
+    len <- 0.012 + 0.032 * frac
+    polygon(c(xx - 0.0035, xx + 0.0035, xx + 0.0012, xx - 0.0012),
+            c(sy + 0.012, sy + 0.012, sy + 0.012 - len, sy + 0.012 - len),
+            col = lesion_col, border = NA)
+  }
+  text(L + 0.07, sy - 0.046, "low", col = ink_mut, adj = c(0.5, 1), cex = sz_axis)
+  text(L + 0.33, sy - 0.046, "high", col = ink_mut, adj = c(0.5, 1), cex = sz_axis)
+
+  # ---- how to read ----
+  # The panel bottom is a hard edge -- keep this to ~11 lines including blanks
+  # or the last paragraph runs off the frame.
+  text(L, 0.205, "How to read it", col = ink_pri, adj = c(0, 1), cex = sz_body)
+  text(L, 0.166,
+       paste0("One ring per year, outward from the pith, split by the share\n",
+              "of landscape area each species dominates.\n\n",
+              "Width is precipitation — a percentile rank across all three\n",
+              "GCMs (457–732 mm), so relative and non-linear — narrowed\n",
+              "further in disrupted years. A thin ring WITH a scar is\n",
+              "disturbance; a thin ring without one is a dry year.\n\n",
+              "Slot colour is temperature as a GAM trend, so the warming\n",
+              "shows through the year-to-year noise. Scars mark the\n",
+              "species that lost most ground: the angle says WHICH species,\n",
+              "not where. Radius is not proportional to time."),
        col = ink_mut, adj = c(0, 1), cex = sz_axis)
 }
 
 if (!isTRUE(getOption("iland_rings_no_run", FALSE))) {
-  out <- here("render", "iland_rings_L01_NorEsm2_rep1.png")
-  dir.create(dirname(out), recursive = TRUE, showWarnings = FALSE)
-  render_disc_frame(out)
-  cat("wrote", out, "\n")
+  dir.create(here("render"), recursive = TRUE, showWarnings = FALSE)
+  cl <- load_climate(); sc <- climate_scales(cl)
+  # Both GCMs on the SAME scales -- rendering them together is the check that
+  # the shared normalisation works.
+  for (g in getOption("iland_rings_models", c("NorEsm2-MM", "TaiESM1"))) {
+    out <- here("render", paste0("iland_rings_L01_", g, "_rep1.png"))
+    render_disc_frame(out, model = g, cl = cl, sc = sc)
+    cat("wrote", out, "\n")
+  }
 }
