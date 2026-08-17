@@ -39,8 +39,11 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
-# pkgdown site
-docs/
+# pkgdown site -- REMOVED. This repo is a visualisation project, not an R
+# package, so pkgdown never writes here; the rule only served to silently swallow
+# docs/tree-ring-disc.md. Git cannot re-include a file inside an excluded
+# directory, so the rule had to go rather than be negated.
+# docs/
 
 # translation temp files
 po/*~

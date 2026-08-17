@@ -22,28 +22,61 @@ area_dom_f <- file.path(iland_dir, "area_dom", "dominant_species_area.parquet")
 climate_raw <- file.path(iland_dir, "climate", "raw")
 climate_f   <- file.path(iland_dir, "climate", "gcm_annual.parquet")
 
+# Alaska boundaries for the locator map. Deliberately re-declared here rather
+# than sourcing R/common.R (the AK fire piece's module): that file sets
+# first_year <- 1980 / last_year <- 2020, which would silently clash with this
+# piece's 2014-2100. Two small loaders are cheaper than that trap.
+ak_shp    <- here("ak_data", "AK_no_islands.shp")
+intak_shp <- here("ak_data", "AK_interior.shp")
+
+load_ak       <- function() terra::project(terra::vect(ak_shp), "EPSG:3338")
+load_interior <- function() terra::project(terra::vect(intak_shp), "EPSG:3338")
+
+# Landscape footprints for the locator map, derived once from the iLand env
+# grids and cached. Same pattern as the climate consolidation: touch the share
+# on first run only.
+landscape_src <- paste0("//10.60.2.10/FF_Lab/personal_storage/quinn_storage/",
+                        "landscape_init_ak_can")
+footprint_f   <- file.path(iland_dir, "landscapes", "footprints.gpkg")
+
 # ---- palette -----------------------------------------------------------------
 #
-# COPIED from C:/Users/asenaq/Documents/GitHub/esa-2026/R/theme.R, which is the
-# SOURCE OF TRUTH -- keep in sync, and prefer changing it there first.
+# DIVERGES FROM esa-2026 ON PURPOSE. The inherited palette solved dark-mode
+# contrast but had never been checked for colour-vision deficiency, and it fails
+# badly: under Machado 2009 at full severity its worst all-pairs separation is
+# dE 3.8 (white spruce vs mixed spruce) -- effectively one colour. Mixed spruce vs
+# mixed deciduous is 4.6. A deuteranope saw roughly three groups, not six.
 #
-# Note the smell: SPECIES_COLOURS now exists in three places (the iLand app's
-# plots/theme.R, esa-2026's R/theme.R, and here). esa-2026's is canonical because
-# it is the only one that solves dark mode, and it does so by measurement rather
-# than by inverting the light palette:
-#   Pima #1b5e20 -> #388e3c   (the original is only 2.47:1 on a dark surface and
-#                              fails the 3:1 floor -- and it is the LARGEST
-#                              category, so it would be the most visible failure)
-#   Potr #fdd835 -> #e8b923   (not a failure at 13.9:1, dimmed for glare)
+# Designed here against hard gates rather than by eye. Reasoning about it failed
+# first: an even lightness ladder scored 0.9, WORSE than the legacy palette,
+# because CVD simulation redistributes lightness according to chroma. A search
+# over the achievable space showed six colours can reach dE 21.7 unconstrained,
+# and 13.9 while keeping species-evocative hues -- so semantics cost almost
+# nothing. This palette is the hill-climbed result inside those hue bands:
+#
+#   all-pairs CVD dE    9.8  (was 3.8)      | normal-vision dE 15.6
+#   contrast on #0d0d0d 3.3 min             | max chroma 0.151, off-neon
+#   nearest the temperature strip  dE 12.1
+#
+# Lightness is assigned by ABUNDANCE, not just semantics: the two smallest
+# categories are the brightest, because a 2% wedge has to be findable.
+#   Potr 12% -> gold at 13.1:1   Bene 2% -> coral at 8.6:1
+#   Mixed.deciduous 21% -> dark brown at 3.3:1, deliberately receding
+# Putting the big warm category dark and the tiny one bright is also what buys
+# the two the lightness separation they need to survive CVD.
+#
+# Birch as coral rather than white is the one real semantic compromise: gold went
+# to aspen, which owns that association more strongly, and coral is what remains
+# in the warm band with enough separation from both gold and brown.
 
 SPECIES_COLOURS_DARK <- c(
-  Pima            = "#388e3c",  # Picea mariana        black spruce
-  Pigl            = "#66bb6a",  # Picea glauca         white spruce
-  Potr            = "#e8b923",  # Populus tremuloides  trembling aspen
-  Bene            = "#e65100",  # Betula neoalaskana   Alaska birch
-  Mixed.spruce    = "#7cb342",
-  Mixed.deciduous = "#f57c00",
-  `Not forested`  = "#78909c"
+  Pima            = "#1C716D",  # Picea mariana        black spruce, dark teal
+  Pigl            = "#4FC1BB",  # Picea glauca         white spruce, light teal
+  Potr            = "#F6D14D",  # Populus tremuloides  aspen, autumn gold
+  Bene            = "#F89177",  # Betula neoalaskana   Alaska birch, coral
+  Mixed.spruce    = "#659423",  # olive green
+  Mixed.deciduous = "#8C5920",  # dark bark brown
+  `Not forested`  = "#78909c"   # unused in this piece; kept for completeness
 )
 
 SPECIES_LABELS <- c(
@@ -63,23 +96,21 @@ SPECIES_ORDER_6 <- c("Pima", "Pigl", "Potr", "Bene",
 
 SPECIES_COLOURS_DARK_6 <- SPECIES_COLOURS_DARK[SPECIES_ORDER_6]
 
-# Both spellings keyed: the downscaling pipeline writes NorESM2-MM, fire_annual
-# writes NorEsm2-MM.
-GCM_COLOURS <- c(
-  "TaiESM1"     = "#2a78d6",
-  "UKESM1-0-LL" = "#eb6834",
-  "NorESM2-MM"  = "#1baf7a",
-  "NorEsm2-MM"  = "#1baf7a"
-)
+# GCM_COLOURS is deliberately NOT copied here: nothing in this piece colours by
+# climate model. When the GCM x replicate grid arrives it is a one-line lift from
+# esa-2026/R/theme.R, which keys both the NorESM2-MM and NorEsm2-MM spellings.
 
 # Surface + chrome, matching ak_fire_anim.R so the two pieces sit together on the
 # site. Darker than esa-2026's #191919, so the dark species palette can only gain
 # contrast -- verified in the checks below rather than assumed.
-bg       <- "#0d0d0d"
-ink_pri  <- "#ffffff"
-ink_sec  <- "#c3c2b7"
-ink_mut  <- "#898781"
-hairline <- "#2c2c2a"
+# Text lifted one step from the ak_fire_anim values: light grey on near-black is
+# harder to read than its contrast ratio suggests. ink_mut carries the caption
+# body, and 5.41:1 cleared the 4.5:1 WCAG floor while still reading as strain.
+# The three-step hierarchy is preserved -- OKLCH L 1.000 / 0.878 / 0.708.
+bg      <- "#0d0d0d"
+ink_pri <- "#ffffff"   # 21.0:1
+ink_sec <- "#d9d7cc"   # 13.5:1  (was #c3c2b7, 10.9:1)
+ink_mut <- "#a3a199"   #  7.5:1  (was #898781,  5.4:1)
 
 # agg_png runs at res = 72 with pointsize = 12, so cex = points / 12.
 pt <- function(points) points / 12
@@ -177,9 +208,40 @@ load_climate <- function(year_min = 2014, year_max = 2100) {
 # Normalisation constants computed ONCE across every GCM in play.
 #
 # This is the trap this function exists to close: if each disc normalised to its
-# own range, NorESM2-MM's near-flat temperature would render with exactly the
-# same colour spread as TaiESM1's ~5 degC climb, and a GCM grid would be
-# silently incomparable while looking perfectly fine.
+# own range, NorESM2-MM's +2.0 degC rise would render with exactly the same
+# colour spread as UKESM1-0-LL's +6.2, and a GCM grid would be silently
+# incomparable while looking perfectly fine.
+SCENARIO_LANDSCAPES <- sprintf("landscape_alaska_%02d_2015-2100scenario", 1:3)
+
+# Every cross-run normalisation constant, computed ONCE and passed into each disc.
+#
+# Named shared_scales, not climate_scales, deliberately. The bug this closes was a
+# channel deriving its own scale instead of reading the shared one, and disturbance
+# slipped through precisely because a climate-only name gave it nowhere to live.
+# One object, one answer to "where does my scale come from".
+shared_scales <- function(cl = load_climate(),
+                          landscapes = SCENARIO_LANDSCAPES) {
+  sc <- climate_scales(cl)
+  sc$di_max <- disturbance_max(landscapes)
+  sc
+}
+
+# Largest disturbance-index value anywhere in the pool: every landscape x model x
+# replicate, not just the run being drawn. Pooling one level too narrow is how the
+# same bug would reappear when a grid adds landscapes 02 and 03.
+disturbance_max <- function(landscapes = SCENARIO_LANDSCAPES) {
+  mx <- 0
+  for (ls in landscapes) {
+    d <- load_area_dom(ls)
+    for (tr in unique(d$treatment)) {
+      for (rp in unique(d$replicate[d$treatment == tr])) {
+        mx <- max(mx, disturbance_index(share_matrix(d, tr, rp)))
+      }
+    }
+  }
+  mx
+}
+
 climate_scales <- function(cl = load_climate()) {
   # Temperature bounds come from the SMOOTHED series, because the smoothed
   # series is what the strip actually draws. Taking them from raw annual values
@@ -268,6 +330,36 @@ latewood_colour <- function(t, sc, n = 256) {
   ramp[pmax(1, pmin(n, round(f * (n - 1)) + 1))]
 }
 
+# ---- landscape footprints (locator map) --------------------------------------
+
+# Where landscapes 01-03 actually sit, taken from each run's env.grid.tif -- the
+# same source esa-2026/R/map_plot.R uses. Cached to a local GeoPackage on first
+# call so the render path never depends on the share.
+#
+# Projected to EPSG:3338 to match AK_no_islands.shp / AK_interior.shp, which are
+# already local. The env grids are ~58 kha each, so at Alaska scale they are
+# specks -- the locator draws them as marked points, not as shapes to be read.
+load_footprints <- function(cache = footprint_f) {
+  if (file.exists(cache)) return(terra::vect(cache))
+  if (!requireNamespace("terra", quietly = TRUE)) stop("terra needed")
+  message("Deriving landscape footprints from the share (one-off)...")
+  ids <- sprintf("landscape_alaska_%02d", 1:3)
+  polys <- lapply(ids, function(id) {
+    f <- file.path(landscape_src, id, "gis", "env.grid.tif")
+    if (!file.exists(f)) stop("Missing env grid: ", f)
+    r <- terra::rast(f)
+    p <- terra::as.polygons(!is.na(r), dissolve = TRUE)
+    p <- p[as.data.frame(p)[[1]] == 1, ]           # keep the valid-data part
+    p <- terra::project(p, "EPSG:3338")
+    p$landscape <- id
+    p[, "landscape"]
+  })
+  out <- do.call(rbind, polys)
+  dir.create(dirname(cache), recursive = TRUE, showWarnings = FALSE)
+  terra::writeVector(out, cache, overwrite = TRUE)
+  out
+}
+
 # ---- ring geometry -----------------------------------------------------------
 
 # Ring width is suppressed by BOTH a dry year and a disturbed one, as in a real
@@ -278,20 +370,44 @@ latewood_colour <- function(t, sc, n = 256) {
 #
 # Annual precip is near-normal with a CV of ~6%, so linear scaling spends most of
 # the width range on rare extremes and leaves the bulk of years bunched: the
-# middle 50% of years occupied just 0.236 of the range, i.e. an interquartile
-# ring spread of 4.95-6.18 px, which reads as no variation at all. Ranking
-# against the pooled distribution doubles that span to 0.496 (3.88-6.92 px) and
-# uses the width channel on the years that actually exist.
+# middle 50% of years occupied just 0.236 of the available 0-1 range, which reads
+# as no variation at all. Ranking against the pooled distribution doubles that
+# span to 0.496 and spends the width channel on the years that actually exist.
+# (Those two figures are fractions of the width range, so they hold regardless of
+# how big the disc is rendered; the pixel figures they were first measured in do
+# not, and have been removed rather than left to rot.)
 #
 # The scale is therefore relative AND non-linear -- the caption must say so.
 # Dendrochronology does the same thing: ring width index is a normalised
 # quantity, not millimetres.
-ring_widths <- function(di, pr, sc, w_clim_min = 0.30, dist_pen = 0.45,
-                        gamma = 0.7) {
+#
+# Defaults match the tuned values in iland_rings.R. They disagreed for a while,
+# which is harmless only as long as every caller passes them explicitly.
+ring_widths <- function(di, pr, sc, w_clim_min = 0.20, dist_pen = 0.45,
+                        dist_gamma = 0.35) {
   pr_n <- sc$pr_rank(pr)
   w_clim <- w_clim_min + (1 - w_clim_min) * pr_n
-  w_dist <- 1 - dist_pen * (if (max(di) > 0) (di / max(di))^gamma else 0 * di)
+  w_dist <- 1 - dist_pen * dist_amp(di, sc, dist_gamma)
   w_clim * w_dist
+}
+
+# Disturbance on the SHARED scale, compressed by dist_gamma.
+#
+# Two jobs in one place, because ring width and scar size must never disagree
+# about how bad a year was. Previously each computed di / max(di) from the single
+# run it held, so every disc rendered its own worst year at full strength and a
+# grid could not be compared -- per-run maxima span 12.7x across the 108 runs.
+#
+# dist_gamma is what keeps a quiet run visible on a shared scale. At the old 0.7
+# the quietest run's worst year narrowed its ring by only 8%, which reads as
+# nothing; at 0.35 it narrows 18% while fidelity to true magnitude stays at 0.97
+# (correlation between a run's real maximum and the narrowing it shows).
+dist_amp <- function(di, sc, dist_gamma = 0.35) {
+  if (is.null(sc$di_max)) {
+    stop("sc has no di_max -- pass shared_scales(), not climate_scales(). ",
+         "Without it di/NULL silently returns length zero.")
+  }
+  pmin(di / sc$di_max, 1)^dist_gamma
 }
 
 radii_from_widths <- function(w, r0 = 0.085, R = 1) {
