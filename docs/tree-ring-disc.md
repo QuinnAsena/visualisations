@@ -44,13 +44,35 @@ minutes.
 | landscape locations | `landscape_init_ak_can/{landscape}/gis/env.grid.tif` | `iland_data/landscapes/footprints.gpkg` (116 KB) |
 | Alaska outlines | `ak_data/AK_no_islands.shp`, `AK_interior.shp` | already in the repo |
 
-**Re-copy `area_dom` after any `preprocess.R` run** on the iLand project. The
-climate and footprint caches rebuild themselves if deleted.
+All four paths above are relative to the share root
+`//10.60.2.10/FF_Lab/personal_storage/quinn_storage/`.
 
-Filters applied: **scenario** family only (not spinup), **onlysimfalse** only
-(the runs where fire actually kills trees), **ssp245** — which is the only SSP the
-vegetation runs and the climate summaries have. `Not forested` is dropped, leaving
-six categories.
+**On a fresh checkout, `area_dom` is the one cache you must copy by hand.**
+`iland_data/` is gitignored, and unlike the other two this one has no code path
+that can rebuild it — `load_area_dom()` only reads the parquet, and the
+`preprocess.R` that produces it lives on the share, not in this repo. So:
+
+```sh
+mkdir -p iland_data/area_dom
+cp "//10.60.2.10/FF_Lab/personal_storage/quinn_storage/iLand-visualisation-ai/data/processed/area_dom/dominant_species_area.parquet" \
+   iland_data/area_dom/
+```
+
+Nothing renders until that file exists; `load_area_dom()` stops with
+"No rows for landscape …" if it is missing or stale.
+
+The climate and footprint caches **do** rebuild themselves if deleted —
+`consolidate_climate()` and `load_footprints()` each fall back to the share.
+Re-copy `area_dom` after any `preprocess.R` run on the iLand project.
+
+Filters applied: **scenario** family only (not spinup), **onlysimfalse** by
+default (the runs where fire actually kills trees), **ssp245** — which is the only
+SSP the vegetation runs and the climate summaries have. `Not forested` is dropped,
+leaving six categories.
+
+`load_area_dom()` takes a `fire` argument so the **`onlysimtrue`** runs — fire
+spreads but kills nothing, 9 replicates instead of 12 — can be loaded too. The
+disc never asks for them; `R/iland_ensemble.R` does, as a no-feedback control.
 
 ---
 
@@ -122,7 +144,7 @@ that draw the rings, so it cannot disagree with them.
 **What:** each year's rainfall is converted to its percentile position within the
 pooled distribution across all three climate models, then mapped to ring width.
 
-**Why:** annual rainfall is near-normal with a coefficient of variation of ~6%
+**Why:** annual rainfall is near-normal with a coefficient of variation of 8.5%
 (457–732 mm). Mapping that linearly to width made the middle 50% of years occupy
 just 0.236 of the available width range — visually no variation at all. Ranking
 doubles that to 0.496.
@@ -163,7 +185,7 @@ It is called `shared_scales`, not `climate_scales`, for a reason: under the old
 name **disturbance was left out for several rounds.** Both ring width and scar
 size computed `di / max(di)` from the single run they held, so every disc rendered
 its own worst year at full strength. Across the 108 runs, per-run maxima span
-0.0154 to 0.2038 — a **13× spread** — so two discs showing identical narrowing
+0.0137 to 0.2038 — a **14.9× spread** — so two discs showing identical narrowing
 could differ thirteenfold in what actually happened. One object, one answer to
 "where does my scale come from".
 
@@ -184,7 +206,7 @@ data, invisible on the page.
 
 "Fidelity" is the correlation between a run's true peak disturbance and the
 narrowing it shows. Pooled rank — the treatment rainfall gets — was rejected here
-because it flattens a 13× magnitude difference to almost nothing, which is the
+because it flattens a 14.9× magnitude difference to almost nothing, which is the
 opposite failure to the one being fixed.
 
 `dist_amp()` is the single place this happens, feeding both ring width and scar

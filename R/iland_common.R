@@ -117,19 +117,20 @@ pt <- function(points) points / 12
 
 # ---- loading -----------------------------------------------------------------
 
-# Scenario family only, onlysimfalse only, Not forested dropped, shares
-# renormalised over the remaining six categories.
+# Scenario family only, one fire condition (default onlysimfalse -- the runs
+# where fire kills trees), Not forested dropped, shares renormalised over the
+# remaining six categories.
 #
 # The renormalisation is not cosmetic: total landscape area is a constant
 # 58,396.3 ha across all years, but that constant includes Not forested. Dropping
 # it leaves a subtotal that varies year to year, so shares MUST be recomputed
 # against that subtotal or the rings will not close to a full circle.
 load_area_dom <- function(landscape = "landscape_alaska_01_2015-2100scenario",
-                          path = area_dom_f) {
+                          path = area_dom_f, fire = "onlysimfalse") {
   d <- as.data.frame(read_parquet(path))
 
   d <- d[d$landscape == landscape &
-           grepl("onlysimfalse", d$treatment, fixed = TRUE) &
+           grepl(fire, d$treatment, fixed = TRUE) &
            d$sp_dom %in% SPECIES_ORDER_6, ]
   if (nrow(d) == 0) stop("No rows for landscape ", landscape)
 
@@ -368,7 +369,7 @@ load_footprints <- function(cache = footprint_f) {
 #
 # Precipitation enters as a PERCENTILE RANK, not a linear min-max stretch.
 #
-# Annual precip is near-normal with a CV of ~6%, so linear scaling spends most of
+# Annual precip is near-normal with a CV of 8.5%, so linear scaling spends most of
 # the width range on rare extremes and leaves the bulk of years bunched: the
 # middle 50% of years occupied just 0.236 of the available 0-1 range, which reads
 # as no variation at all. Ranking against the pooled distribution doubles that
@@ -396,7 +397,7 @@ ring_widths <- function(di, pr, sc, w_clim_min = 0.20, dist_pen = 0.45,
 # Two jobs in one place, because ring width and scar size must never disagree
 # about how bad a year was. Previously each computed di / max(di) from the single
 # run it held, so every disc rendered its own worst year at full strength and a
-# grid could not be compared -- per-run maxima span 12.7x across the 108 runs.
+# grid could not be compared -- per-run maxima span 14.9x across the 108 runs (0.0137-0.2038).
 #
 # dist_gamma is what keeps a quiet run visible on a shared scale. At the old 0.7
 # the quietest run's worst year narrowed its ring by only 8%, which reads as
